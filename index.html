@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MetaMask Connection and File Upload</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Axios for HTTP requests -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen p-4">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+      <!-- Upload Form Div (Left Side) -->
+      <div class="bg-white p-6 justify-start rounded-lg shadow-md w-full md:w-1/2 md:order-1">
+        <h2 class="text-xl font-bold mb-4">Upload Form</h2>
+        <form id="uploadForm">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-bold mb-2"
+              >Name:</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="image1"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Image 1:</label
+            >
+            <input
+              type="file"
+              id="image1"
+              name="image1"
+              accept="image/*"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="image2"
+              class="block text-gray-700 text-sm font-bold mb-2"
+              >Image 2:</label
+            >
+            <input
+              type="file"
+              id="image2"
+              name="image2"
+              accept="image/*"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="mb-6">
+            <label for="pdf" class="block text-gray-700 text-sm font-bold mb-2"
+              >PDF Document:</label
+            >
+            <input
+              type="file"
+              id="pdf"
+              name="pdf"
+              accept=".pdf"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+
+          <div class="flex items-center justify-between">
+            <button
+              type="submit"
+              class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <div id="result" class="mt-4"></div>
+      </div>
+
+      <!-- MetaMask Connection Div (Right Side) -->
+      <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-1/3 md:order-2">
+        <h1 class="text-2xl font-bold mb-4">Connect to MetaMask</h1>
+        <button
+          id="connectButton"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Connect Wallet
+        </button>
+        <p id="status" class="mt-4 text-gray-700"></p>
+        <h2 class="text-xl font-bold mb-4">Owned IDs</h2>
+        <ul id="ownedIDs" class="list-disc pl-5 text-gray-700"></ul>
+      </div>
+
+      
+    </div>
+    <div id="data" class="bg-white p-6 rounded-lg shadow-md w-full mt-4">
+        <h2 class="text-xl font-bold mb-4">Fetch Data by ID</h2>
+        <form id="fetchDataForm">
+          <div class="mb-4">
+            <label for="dataID" class="block text-gray-700 text-sm font-bold mb-2">ID:</label>
+            <input
+              type="text"
+              id="dataID"
+              name="dataID"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <button
+              type="submit"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Fetch Data
+            </button>
+          </div>
+        </form>
+        <div id="dataResult" class="mt-4">
+          <!-- Images will be displayed here -->
+    </div>
+
+    <script type="module" src="wallet.js"></script>
+    <script
+      type="module"
+      src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7/web3.min.js"
+    ></script>
+    <script type="module" src="pinata.js"></script>
+    <script type="module" src="showData.js"></script>
+  </body>
+</html>
